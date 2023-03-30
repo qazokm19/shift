@@ -30,11 +30,12 @@ p {
   /* //top: 1rem; */
   width: 100%;
   margin: 0;
+  top: 15%;
   line-height: 1;
   text-align: center;
-  font: 4.5rem 'Bayon',sans-serif;
+  font: 3.5rem 'Bayon',sans-serif;
   color: white;
-  text-shadow: 0.1em 0.1em 0.5em black;
+  text-shadow: 3px 3px 6px black;
   font-family: Orbitron, sans-serif;
   
   @media (max-width: 490px) {
@@ -81,8 +82,68 @@ svg.svgclass {
   z-index: -1000;
 }
 
+.timetable1 {
+  width: 50%;
+  background-color: rgba(0, 0, 0, 0.514);
+  left: 25%;
+  top: 30%;
+  position: absolute;
+  z-index: 100000;
+  color: white;
+}
 
+table.timetable {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+table.timetable td, table.timetable th {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+/* table.timetable thead {
 
+  } */
+table.timetable thead th {
+  font-weight: bold;
+  text-align: center;
+}
+table.timetable tfoot td {
+  font-size: 14px;
+}
+table.timetable tfoot .links {
+  text-align: right;
+}
+table.timetable tfoot .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+h5 {
+position: absolute;
+  left: 0;
+  /* //top: 1rem; */
+  width: 100%;
+  margin: 0;
+  bottom: 1%;
+  line-height: 1;
+  text-align: center;
+  font: 1.5rem 'Bayon',sans-serif;
+  color: white;
+  text-shadow: 3px 3px 6px black;
+  font-family: Orbitron, sans-serif;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: rgba(255, 255, 255, 0.473);
+}
 
 /* // player styles  */
 
