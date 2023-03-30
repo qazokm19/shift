@@ -1,5 +1,457 @@
 body {
-    background-color: black;
-    height: 100%;
-    width: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 33%, rgba(255,255,255,0.05) 33%, rgba(255,255,255,0.0) 66%, rgba(255,255,255,0) 66%, rgba(255,255,255,0) 100%), black;
+  //min-height: 100vh;
+}
+
+#box {
+  // width: calc(100% - 2rem);
+  min-width: 100vw;
+  min-height: 100vh;
+  // max-width: 90vmin;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  //border: 1rem solid white;
+  overflow: hidden;
+}
+
+#box:before {
+  content: '';
+  display: block;
+  width: 100vw;
+  //padding-top: 100%;
+  overflow: hidden;
+}
+
+p {
+  position: absolute;
+  left: 0;
+  //top: 1rem;
+  width: 100%;
+  margin: 0;
+  line-height: 1;
+  text-align: center;
+  font: 4.5rem 'Bayon',sans-serif;
+  color: white;
+  text-shadow: 0.1em 0.1em 0.5em black;
+  font-family: Orbitron, sans-serif;
+  
+  @media (max-width: 490px) {
+    font-size: 4rem;
+  }
+  @media (max-height: 490px) {
+    font-size: 4rem;
+  }
+  @media (max-width: 450px) {
+    font-size: 3rem;
+  }
+  @media (max-height: 450px) {
+    font-size: 3rem;
+  }
+  @media (max-width: 350px) {
+    font-size: 2.75rem;
+  }
+  @media (max-height: 350px) {
+    font-size: 2.75rem;
+  }
+}
+
+img {
+  position: absolute;
+  left: -1rem;
+  top: -1rem;
+  height: 100%;
+  width: 100vw;
+  //width: calc(100% + 2rem);
+}
+
+img:nth-child(1) {
+  filter: url(#transmissionerror);
+}
+
+img:nth-child(2) {
+  filter: grayscale(100%) contrast(1000%);
+  mix-blend-mode: multiply;
+  // display: none;
+}
+
+svg.svgclass {
+  position: absolute;
+  z-index: -1000;
+}
+
+
+
+
+// player styles 
+
+
+.hide {
+  display: none !important;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+
+#stickplayer {
+  width: 100%;
+}
+
+.ap {
+  background: #000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  max-height: 100%;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  user-select: none;
+  color: #333;
+  //background: rgba(255, 255, 255, 0.06);
+  opacity: 0.9;
+  border-top: 1px solid rgb(0, 0, 0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  -webkit-transition: all 30s ease-in-out;
+  -moz-transition: all 30s ease-in-out;
+  -o-transition: all 30s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+
+.ap-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.ap-panel {
+  display: flex;
+  //background: #000000;
+}
+
+.ap-item {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.ap--track {
+  flex: 1 40%;
+  padding: 0 20px;
+}
+
+.ap-info {
+  width: 100%;
+  position: relative;
+  align-self: flex-start;
+  padding: 5px 0 0;
+}
+
+.ap-title {
+  position: relative;
+  overflow: hidden;
+  padding-right: 80px;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #ffffff;
+}
+
+.ap-title:hover {
+  position: relative;
+  overflow: hidden;
+  padding-right: 80px;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #f50;
+  font-weight: bold;
+}
+
+.ap-time {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  color: #ffffff;
+}
+
+.ap-time:hover {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  color: #f50;
+  font-weight: bold;
+}
+
+.ap-progress-container {
+  padding: 5px 0 10px;
+  cursor: pointer;
+}
+
+.ap-progress {
+  position: relative;
+  height: 3px;
+  border-radius: 5px;
+  background: #ffffff;
+}
+
+.ap-preload-bar,
+.ap-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-radius: 5px 0 0 5px;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+.ap-bar {
+  background: #f50;
+  z-index: 9999;
+}
+
+.ap-bar:after {
+  position: absolute;
+  top: 0;
+  right: -5px;
+  width: 12px;
+  height: 12px;
+  margin-top: -4px;
+  content: "";
+  border-radius: 6px;
+  background: #f50;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ap-progress-container:hover .ap-bar:after {
+  opacity: 1;
+}
+
+.ap-controls {
+  position: relative;
+  z-index: 1000;
+  display: block;
+  height: 50px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-align: center;
+  color: EEEEEE;
+  border: 0;
+  outline: 0;
+  background: none;
+}
+
+.ap-controls svg {
+  fill: #ffffff;
+}
+
+.ap-controls:hover svg {
+  fill: #f50;
+}
+
+.ap-controls:active {
+  background: rgba(0, 0, 0, 3);
+}
+
+.ap--playback>.ap-controls,
+.ap--settings>.ap-controls {
+  flex: 0 25%;
+}
+
+.ap--pause,
+.playing>.ap--play {
+  display: none;
+}
+
+.playing>.ap--pause {
+  display: inline;
+}
+
+.ap-volume-container {
+  z-index: 9999;
+}
+
+.ap-volume {
+  position: absolute;
+  right: 0;
+  bottom: 50px;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  cursor: pointer;
+  visibility: hidden;
+  transition: height 0.9s cubic-bezier(0.17, 0.72, 0.26, 1.23);
+  background: rgba(255, 255, 255, 0.02);
+  opacity: 0.7;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  border-bottom: 0;
+  z-index: 9999;
+}
+
+.ap-volume-btn {
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+.ap-volume-btn>.ap--volume-off,
+.muted>.ap--volume-on {
+  display: none;
+}
+
+.muted>.ap--volume-off {
+  display: inline;
+}
+
+.ap-volume-container:hover {
+  background: #1e88e5;
+}
+
+.ap-volume-container:hover .ap-volume {
+  height: 120px;
+  visibility: visible;
+}
+
+.ap-volume-progress {
+  display: block;
+  width: 4px;
+  height: 100px;
+  margin: 10px auto;
+  background: rgba(0, 0, 0, 0.2);
+  position: relative;
+  border-radius: 3px;
+}
+
+.ap-volume-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f50;
+  height: 50%;
+  border-radius: 3px;
+}
+
+.ap-active {
+  background: rgba(0, 0, 0, 0.15);
+  opacity: 1;
+}
+
+@keyframes blink {
+  from {
+      opacity: 0;
+  }
+
+  50% {
+      opacity: 1;
+  }
+
+  to {
+      opacity: 0;
+  }
+}
+
+.playing>.ap--pause {
+  animation: blink 1.5s linear infinite;
+}
+
+@media (max-width: 880px) {
+  .ap-item>.ap-controls {
+      flex: 1;
+  }
+}
+
+@media (max-width: 550px) {
+  .ap {
+      min-width: 250px;
+  }
+
+  .ap,
+  .ap-panel {
+      height: auto;
+  }
+
+  .ap-panel {
+      flex-wrap: wrap;
+  }
+
+  .ap--track {
+      margin-bottom: 10px;
+      padding: 0 20px;
+      order: 1;
+      flex: 1 1 100%;
+  }
+
+  .ap--playback,
+  .ap--settings {
+      flex: 1 1 50%;
+      order: 2;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f00;
+}
+
+@keyframes eq {
+  0% {
+      height: 3px;
+  }
+
+  50% {
+      height: 20px;
+  }
+
+  100% {
+      height: 3px;
+  }
+}
+
+.eq {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.eq-bar {
+  width: 4px;
+  background: rgb(255, 250, 250);
+}
+
+.eq-bar:nth-child(1) {
+  animation: eq 0.8s ease-in-out infinite 0s;
+}
+
+.eq-bar:nth-child(2) {
+  animation: eq 0.8s ease-in-out infinite 0.2s;
+}
+
+.eq-bar:nth-child(3) {
+  animation: eq 0.8s ease-in-out infinite 0.4s;
+}
+
+#overflow {
+  white-space: nowrap;
+  max-width: 25em;
+  overflow: hidden;
 }
